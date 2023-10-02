@@ -1,14 +1,14 @@
-import java.util.Scanner;
 import javax.swing.JOptionPane;
+import java.util.Scanner;
 public class Ta05FlujoDeDatosApp {
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
 
         ejercicio1();
         ejercicio2();
-        ejercicio3(scanner);
-        ejercicio4(scanner);
-        ejercicio5(scanner);
+        ejercicio3();
+        ejercicio4();
+        ejercicio5();
         ejercicio6(scanner);
         ejercicio7();
         ejercicio8();
@@ -22,16 +22,17 @@ public class Ta05FlujoDeDatosApp {
     }
 
     //1) Declara 2 variables numéricas (con el valor que desees), he indica cual es mayor de los dos. Si son iguales indicarlo también. Ves cambiando los valores para comprobar que funciona.
-    public static void ejercicio1() {
-        int num1 = 5;
-        int num2 = 10;
-
+	public static void ejercicio1() {
+        int num1 = 10;
+        int num2 = 20;
         if (num1 > num2) {
-            System.out.println("El primer número es mayor.");
-        } else if (num2 > num1) {
-            System.out.println("El segundo número es mayor.");
-        } else {
-            System.out.println("Los números son iguales.");
+            JOptionPane.showMessageDialog(null, "El primer número es mayor.");
+        } 
+        else if (num2 > num1) {
+            JOptionPane.showMessageDialog(null, "El segundo número es mayor.");
+        } 
+        else {
+            JOptionPane.showMessageDialog(null, "Los números son iguales.");
         }
     }
 
@@ -42,39 +43,38 @@ public class Ta05FlujoDeDatosApp {
     }
 
     //3) Modifica la aplicación anterior, para que nos pida el nombre que queremos introducir (recuerda usar JOptionPane).
-    public static void ejercicio3(Scanner scanner) {
-        System.out.print("Tu nombre: ");
-        String nombre = scanner.nextLine();
-        System.out.println("Bienvenido " + nombre);
+    public static void ejercicio3() {
+        String nombre = JOptionPane.showInputDialog("Como te llamas: ");
+        JOptionPane.showMessageDialog(null, "Bienvenido " + nombre);
     }
 
     //4) Haz una aplicación que calcule el área de un circulo (pi*R2). El radio se pedirá por teclado (recuerda pasar de String a double con Double.parseDouble). Usa la constante Pl y el método pow de Math.
-    public static void ejercicio4(Scanner scanner) {
-        System.out.print("Introduce el radio del círculo: ");
-        double radio = Double.parseDouble(scanner.nextLine());
+    public static void ejercicio4() {
+        String radioEntrada = JOptionPane.showInputDialog("Radio del circulo: ");
+        double radio = Double.parseDouble(radioEntrada);
         double area = Math.PI * Math.pow(radio, 2);
-        System.out.println("El área del círculo es: " + area);
+        JOptionPane.showMessageDialog(null, "La area del circulo es: " + area);
     }
 
     //5) Lee un número por teclado e indica si es divisible entre 2 (resto = 0). Si no lo es, también debemos indicarlo.
-    public static void ejercicio5(Scanner scanner) {
-        System.out.print("Introduce un número: ");
-        int numero = Integer.parseInt(scanner.nextLine());
-
+    public static void ejercicio5() {
+        String numeroStr = JOptionPane.showInputDialog("Introduce un número: ");
+        int numero = Integer.parseInt(numeroStr);
         if (numero % 2 == 0) {
-            System.out.println("El número es divisible por 2.");
-        } else {
-            System.out.println("El número no es divisible por 2.");
+            JOptionPane.showMessageDialog(null, "Es divisible por 2.");
+        } 
+        else {
+            JOptionPane.showMessageDialog(null, "No es divisible por 2.");
         }
     }
 
     //6) Lee un número por teclado que pida el precio de un producto (puede tener decimales) y calcule el precio final con IVA. EI IVA sera una constante que sera del 21%
     public static void ejercicio6(Scanner scanner) {
-        System.out.print("Introduce el precio del producto: ");
+        System.out.print("Precio del producto: ");
         double precio = Double.parseDouble(scanner.nextLine());
-        final double IVA = 0.21;
-        double precioFinal = precio + (precio * IVA);
-        System.out.println("El precio final con IVA es: " + precioFinal);
+        final double iva = 0.21;
+        double precioFinal = precio + (precio * iva);
+        System.out.println("El precio es: " + precioFinal);
     }
 
     //7) Muestra los números del 1 al 100 (ambos incluidos). Usa un bucle while.
@@ -104,23 +104,20 @@ public class Ta05FlujoDeDatosApp {
 
     //10) Realiza una aplicación que nos pida un número de ventas a introducir, después nos pedirá tantas ventas por teclado como número de ventas se hayan indicado. Al final mostrara la suma de todas las ventas. Piensa que es lo que se repite y lo que no.
     public static void ejercicio10(Scanner scanner) {
-        System.out.print("Introduce el número de ventas: ");
+        System.out.print("Numero de ventas: ");
         int numVentas = Integer.parseInt(scanner.nextLine());
         double sumaVentas = 0;
-
         for (int i = 1; i <= numVentas; i++) {
-            System.out.print("Introduce el valor de la venta " + i + ": ");
+            System.out.print("Valor de la venta " + i + ": ");
             double venta = Double.parseDouble(scanner.nextLine());
             sumaVentas += venta;
         }
-
-        System.out.println("La suma total de las ventas es: " + sumaVentas);
+        System.out.println("La suma de ventas es: " + sumaVentas);
     }
     //11) Crea una aplicación que nos pida un día de la semana y que nos diga si es un día laboral o no. Usa un switch para ello.
     public static void ejercicio11(Scanner scanner) {
-        System.out.print("Introduce un día de la semana: ");
+        System.out.print("Dia de la semana: ");
         String diaSemana = scanner.nextLine().toLowerCase();
-
         switch (diaSemana) {
             case "lunes":
             case "martes":
@@ -139,24 +136,23 @@ public class Ta05FlujoDeDatosApp {
     }
     //12) Escribe una aplicación con un String que contenga una contraseña cualquiera. Después se te pedirá que introduzcas la contraseña, con 3 intentos. Cuando aciertes ya no pedirá mas la contraseña y mostrara un mensaje diciendo "Enhorabuena". Piensa bien en la condición de salida (3 intentos y si acierta sale, aunque le queden intentos).
     public static void ejercicio12(Scanner scanner) {
-        String contraseña = "contrasena";
+        String contraseña = "P@ssw0rd";
         int intentos = 3;
-
         while (intentos > 0) {
-            System.out.print("Introduce la contraseña: ");
+            System.out.print("Contraseña: ");
             String entrada = scanner.nextLine();
-
             if (entrada.equals(contraseña)) {
-                System.out.println("¡Enhorabuena! Contraseña correcta.");
+                System.out.println("Enhorabuena!");
                 break;
-            } else {
+            }
+            else {
                 intentos--;
                 System.out.println("Contraseña incorrecta. Intentos restantes: " + intentos);
             }
         }
 
         if (intentos == 0) {
-            System.out.println("Has agotado tus intentos. Acceso denegado.");
+            System.out.println("0 intentos. Acceso denegado.");
         }
     }
 
@@ -170,17 +166,13 @@ public class Ta05FlujoDeDatosApp {
     	%: módulo, resto de la división entre operando1 y operando2.
     */
     public static void ejercicio13(Scanner scanner) {
-        System.out.print("Introduce el primer operando (entero): ");
+        System.out.print("Introduce el primer numero: ");
         int operando1 = Integer.parseInt(scanner.nextLine());
-
-        System.out.print("Introduce el segundo operando (entero): ");
+        System.out.print("Introduce el segundo numero: ");
         int operando2 = Integer.parseInt(scanner.nextLine());
-
-        System.out.print("Introduce el signo aritmético (+, -, *, /, A, %): ");
+        System.out.print("Introduce una operación (+, -, *, /, ^, %): ");
         String signo = scanner.nextLine();
-
         double resultado = 0;
-
         switch (signo) {
             case "+":
                 resultado = operando1 + operando2;
@@ -194,17 +186,16 @@ public class Ta05FlujoDeDatosApp {
             case "/":
                 resultado = (double) operando1 / operando2;
                 break;
-            case "A":
+            case "^":
                 resultado = Math.pow(operando1, operando2);
                 break;
             case "%":
                 resultado = operando1 % operando2;
                 break;
             default:
-                System.out.println("Signo aritmético no válido.");
+                System.out.println("No válido.");
                 return;
         }
-
         System.out.println("Resultado: " + resultado);
     }
 }
